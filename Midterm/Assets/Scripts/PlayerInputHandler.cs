@@ -6,8 +6,9 @@ public class PlayerInputHandler : MonoBehaviour
 {
     Movement movement;
     FireProjectile fireProjectile;
-    public float fireRate = 0.75f;
+    public float fireRate = 0.3f;
     private float nextFire = 0.0f;
+    private bool toggleWeapon = false; // Initial state
 
     // Start is called before the first frame update
     void Awake()
@@ -17,17 +18,31 @@ public class PlayerInputHandler : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update(){
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Q)){
+            toggleWeapon = !toggleWeapon; // Toggle the state when Q is pressed
+        }
+        if (toggleWeapon){
             if(Input.GetKey(KeyCode.Space) && Time.time > nextFire){
                 nextFire = Time.time + fireRate;
+                fireProjectile.TripleFire(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+        }
+
+        } else {
+            if(Input.GetKey(KeyCode.Space) && Time.time > nextFire){
+                nextFire = Time.time + (fireRate / 2);
                 fireProjectile.Fire(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+            }
         }
     }
+
     void FixedUpdate()
     {
         Vector3 vel = Vector3.zero;
 
         if(Input.GetKey(KeyCode.W)){
+           
             vel.y = 1;
         } else if(Input.GetKey(KeyCode.S)){
             vel.y = -1;
@@ -37,6 +52,7 @@ public class PlayerInputHandler : MonoBehaviour
         } else if(Input.GetKey(KeyCode.D)){
             vel.x = 1;
         }
-        movement.moveRB(vel);
+        
+        movement.moveRobot(vel);
     }
 }
