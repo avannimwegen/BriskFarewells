@@ -13,7 +13,9 @@ public class playerProjectile : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other){
         if (other.gameObject.tag == "Player"){
-            // player and player projectiles don't destroy themselves
+            // don't let player destroy their own bullets
+        } else if (other.gameObject.tag == "PlayerProjectile"){
+            // don't let player projectiles destroy themselves
         } else if (other.gameObject.tag == "VerticalBounce"){
             Rigidbody2D rb = gameObject.GetComponent<Rigidbody2D>();
             Vector2 newVelocity = rb.velocity;

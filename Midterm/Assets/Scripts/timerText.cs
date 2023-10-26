@@ -7,6 +7,7 @@ public class timerText : MonoBehaviour
 {
     Text textTimer;
     int seconds = 0;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -21,6 +22,5 @@ public class timerText : MonoBehaviour
             textTimer.text = seconds.ToString();
         }
         yield return null;
-
     }
 }

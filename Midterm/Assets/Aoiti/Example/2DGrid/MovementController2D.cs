@@ -60,11 +60,15 @@ using Aoiti.Pathfinding; //import the pathfinding library
 
 public class MovementController2D : MonoBehaviour
 {
+    private Transform playerTransform;
+    private Vector3 playerPosition;
+
     [Header("Navigator options")]
     [SerializeField] float gridSize = 0.5f; //increase patience or gridSize for larger maps
     [SerializeField] float speed = 0.05f; //increase for faster movement
     
     Pathfinder<Vector2> pathfinder; //the pathfinder object that stores the methods and patience
+
     [Tooltip("The layers that the navigator can not pass through.")]
     [SerializeField] LayerMask obstacles;
     [Tooltip("Deactivate to make the navigator move along the grid only, except at the end when it reaches to the target point. This shortens the path but costs extra Physics2D.LineCast")] 
@@ -80,15 +84,26 @@ public class MovementController2D : MonoBehaviour
     void Start()
     {
         pathfinder = new Pathfinder<Vector2>(GetDistance,GetNeighbourNodes,1000); //increase patience or gridSize for larger maps
+
+        // Get the player character's transform
+        playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+        playerPosition = new Vector3(playerTransform.position.x, playerTransform.position.y, -10);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0)) //check for a new target
-        {
-            GetMoveCommand(Camera.main.ScreenToWorldPoint(Input.mousePosition));
-        }
+        //if (Input.GetMouseButtonDown(0)) //check for a new target
+        
+    
+            //Debug.Log("Mouse position at " + Camera.main.ScreenToWorldPoint(Input.mousePosition));
+            
+            // Convert the player's position (a Vector3) to a Vector2
+            playerPosition = new Vector3(playerTransform.position.x, playerTransform.position.y, -10);
+            //Debug.Log("Player position at" + playerPosition);
+            GetMoveCommand(playerPosition);
+            //GetMoveCommand(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+        
 
         if (pathLeftToGo.Count > 0) //if the target is not yet reached
         {

@@ -8,11 +8,13 @@ TagManager:
   - Spawn2
   - VerticalBounce
   - HorizontalBounce
+  - PlayerProjectile
+  - Enemy
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Walls
   - Water
   - UI
   - 

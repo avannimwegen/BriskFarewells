@@ -6,7 +6,7 @@ public class FireProjectile : MonoBehaviour
 {
 
 public GameObject projectilePrefab;
-    [SerializeField] float speed = 10f;
+    //[SerializeField] float speed = 10f;
 
     // Start is called before the first frame update
     void Start()

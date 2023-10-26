@@ -23,17 +23,17 @@ public class RandomBoxSpawner : MonoBehaviour
         SpawnBoxesOverTime();
     }
 
-    void SpawnBoxesOverTime2(){
-        StartCoroutine(SpawnBoxesOverTimeRoutine());
+    //void SpawnBoxesOverTime2(){
+    //    StartCoroutine(SpawnBoxesOverTimeRoutine());
 
-        IEnumerator SpawnBoxesOverTimeRoutine(){
-            yield return new WaitForSeconds(2);
-            Instantiate(boxPrefab, Vector3.zero, Quaternion.identity);
+    //    IEnumerator SpawnBoxesOverTimeRoutine(){
+    //        yield return new WaitForSeconds(2);
+    //        Instantiate(boxPrefab, Vector3.zero, Quaternion.identity);
 
-            yield return null;
-        }
+    //        yield return null;
+    //    }
 
-    }
+    //}
 
     void SpawnBoxesOverTime(){
         StartCoroutine(SpawnBoxesOverTimeRoutine());
@@ -42,8 +42,8 @@ public class RandomBoxSpawner : MonoBehaviour
 
             while(true){
                 yield return new WaitForSeconds(1.8f);
-                
-                GameObject newBox = Instantiate(boxPrefab, new Vector3(transform.position.x, transform.position.y , 0), Quaternion.identity);    
+                Vector3 randomOffset = new Vector3(transform.position.x + Random.Range(-1f, 1f), transform.position.y + Random.Range(-1f, 1f), 0f);
+                GameObject newBox = Instantiate(boxPrefab, new Vector3(randomOffset.x, randomOffset.y, 0), Quaternion.identity);    
             }
 
             yield return null;
@@ -70,16 +70,12 @@ public class RandomBoxSpawner : MonoBehaviour
     }
 
         void OnTriggerEnter2D(Collider2D other){
-        if (other.CompareTag("Player")){
-            // If target hits player. Currently handled in Player script.
-            hitPoints -= 1;
-        }
-
-        // Projectile takes damage when shot by player.
-        if(other.tag == "friendlyProjectile"){
-            hitPoints -= 1;
-        }
-
+            if (other.tag == "Player"){
+                // Is fine to touch
+            
+            // Projectile takes damage when shot by player.
+            } else if(other.tag == "PlayerProjectile"){
+                hitPoints -= 1;
+            }
     }
-
 }

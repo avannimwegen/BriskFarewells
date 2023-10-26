@@ -5,22 +5,29 @@ using UnityEngine;
 public class SimpleAI : MonoBehaviour
 {
     Movement movement;
-
     
+    //public ParticleSystem particleBurst;
     [SerializeField] float viewRadius = 5;
     [SerializeField] bool activated = false;
+    [SerializeField] bool detonated = false;
     [SerializeField] Transform playerTransform;
     public GameObject EnemyProjectile;
+    public GameObject Telegraph;
 
     void Awake(){
         movement = GetComponent<Movement>();
         playerTransform = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        
     }
 
     // Update is called once per frame
     void Update()
-    {
-        if(Vector3.Distance(transform.position, playerTransform.position) < viewRadius){
+    { 
+        if(detonated){
+            Idle();
+        } else if(Vector3.Distance(transform.position, playerTransform.position) < 1){
+            Bomb();
+        } else if(Vector3.Distance(transform.position, playerTransform.position) < viewRadius){
             FollowPlayer();
         } else if(activated){
             Patrol();
@@ -28,8 +35,6 @@ public class SimpleAI : MonoBehaviour
             Idle();
         }
     }
-
-    
 
     public void FollowPlayer(){
         if(activated == false){
@@ -60,5 +65,14 @@ public class SimpleAI : MonoBehaviour
     public void Idle(){
         GetComponent<SpriteRenderer>().color = Color.white;
         movement.moveRB(Vector3.zero);
+    }
+
+    public void Bomb(){
+        if(!detonated){
+            Instantiate(Telegraph, transform.position, Quaternion.identity);
+            Destroy(this.gameObject);
+        }
+        //Instantiate(particleBurst, transform.position, Quaternion.identity);
+        detonated = true;
     }
 }
