@@ -89,8 +89,8 @@ public class Movement : MonoBehaviour
         if (pathLeftToGo.Count > 0) //if the target is not yet reached
         {
             Vector3 dir =  (Vector3)pathLeftToGo[0]-transform.position ;
-            transform.position += dir.normalized * speed;
-            if (((Vector2)transform.position - pathLeftToGo[0]).sqrMagnitude <speed*speed) 
+            transform.position += dir.normalized * Time.deltaTime * speed;
+            if (((Vector2)transform.position - pathLeftToGo[0]).sqrMagnitude <speed*speed*Time.deltaTime) 
             {
                 transform.position = pathLeftToGo[0];
                 pathLeftToGo.RemoveAt(0);

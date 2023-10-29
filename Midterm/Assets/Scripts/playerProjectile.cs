@@ -26,6 +26,8 @@ public class playerProjectile : MonoBehaviour
             Vector2 newVelocity = rb.velocity;
             newVelocity.y = rb.velocity.y * -1;
             rb.velocity = newVelocity;
+        } else if (other.gameObject.tag == "Checkpoint"){
+
         } else {
             Destroy(this.gameObject);
         }

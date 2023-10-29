@@ -5,11 +5,20 @@ using UnityEngine.SceneManagement;
 
 public class NextZone2 : MonoBehaviour
 {
+    public int checkpointID;
+    public GameObject player;
+
+    void Start(){
+        if(PlayerPrefs.GetInt(SaveFlags.checkpointString) == checkpointID){
+            player.transform.position = transform.position;
+        }
+
+    }
+
+
     void OnTriggerEnter2D(Collider2D other){
         if (other.tag == "Player"){
-            // If target hits player. Currently handled in Player script.
-            Debug.Log("Player got touched");
-            SceneManager.LoadScene("Level_Two");
+            PlayerPrefs.SetInt(SaveFlags.checkpointString, checkpointID);
         } 
     }
 }

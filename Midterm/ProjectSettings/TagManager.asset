@@ -10,6 +10,7 @@ TagManager:
   - HorizontalBounce
   - PlayerProjectile
   - Enemy
+  - Checkpoint
   layers:
   - Default
   - TransparentFX

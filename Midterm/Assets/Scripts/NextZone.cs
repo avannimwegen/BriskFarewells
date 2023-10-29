@@ -5,11 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class NextZone : MonoBehaviour
 {
+    public int sceneBuildIndex;
+
     void OnTriggerEnter2D(Collider2D other){
         if (other.tag == "Player"){
-            // If target hits player. Currently handled in Player script.
-            Debug.Log("Player got touched");
-            SceneManager.LoadScene("Level_Three");
+            SceneManager.LoadScene(sceneBuildIndex);
         } 
     }
 }

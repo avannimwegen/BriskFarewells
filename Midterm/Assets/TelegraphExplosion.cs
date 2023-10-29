@@ -35,7 +35,7 @@ public void Telegraph(){
             spriteTransform.localScale = targetScale;
 
             // Check to see if player is hit
-            if(Vector3.Distance(transform.position, playerTransform.position) < 2){
+            if(Vector3.Distance(transform.position, playerTransform.position) < 1.5f){
                 if (playerObject != null){
                     PlayerShip playerShip = playerObject.GetComponent<PlayerShip>();
                     if (playerShip != null){
