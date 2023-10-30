@@ -5,22 +5,31 @@ using UnityEngine.SceneManagement;
 
 public class FallingBox : MonoBehaviour
 {
-
-    //public ParticleSystem particleBurst;
+    Material material;
     Movement movement;
+
+    // Basic enemy fields
     [SerializeField] int targetHp = 5;
-    private bool destroyed = false;
+
+    // Enemys are slowly created at portals
+    float teleportTime = 2f;
+    private float TeleportFade = 0f; // Initial value for _TeleportFade
+
+
+    // This is for creating the explosion when ship is destroyed
     public GameObject Telegraph;
+    private bool destroyed = false;
 
     // Start is called before the first frame update
     void Awake()
     {
         movement = GetComponent<Movement>();
+        material = GetComponent<SpriteRenderer>().material;
     }
     // Start is called before the first frame update
     void Start()
     {
-        
+        TeleportIn();
     }
 
     void OnTriggerEnter2D(Collider2D other){
@@ -49,6 +58,30 @@ public class FallingBox : MonoBehaviour
             Instantiate(Telegraph, transform.position, Quaternion.identity);
             Destroy(this.gameObject);
         } destroyed = true;
+    }
+
+    void TeleportIn(){
+        StartCoroutine(TeleportInRoutine());
+        IEnumerator TeleportInRoutine(){
+            float timer = 0f;
+
+            while (timer < teleportTime)
+            {
+                // Calculate the new value for _TeleportFade using Lerp
+                TeleportFade = Mathf.Lerp(0f, 1f, timer / teleportTime);
+                
+                // Update the material property
+                material.SetFloat("_TeleportFade", TeleportFade);
+
+                timer += Time.deltaTime;
+                yield return null;
+            }
+
+            // Ensure the value is exactly 1 at the end
+            TeleportFade = 1f;
+            material.SetFloat("_TeleportFade", TeleportFade);
+        }
+
     }
 
     //public void ExplodeShip(){

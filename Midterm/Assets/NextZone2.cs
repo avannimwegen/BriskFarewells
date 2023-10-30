@@ -18,6 +18,7 @@ public class NextZone2 : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other){
         if (other.tag == "Player"){
+            Debug.Log("Checkpoint: " + checkpointID + " activated.");
             PlayerPrefs.SetInt(SaveFlags.checkpointString, checkpointID);
         } 
     }
