@@ -28,6 +28,8 @@ public class playerProjectile : MonoBehaviour
             rb.velocity = newVelocity;
         } else if (other.gameObject.tag == "Checkpoint"){
 
+        } else if (other.gameObject.tag == "NoCollisionProjectile"){
+            
         } else {
             Destroy(this.gameObject);
         }

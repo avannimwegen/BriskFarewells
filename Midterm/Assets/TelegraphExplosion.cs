@@ -25,7 +25,7 @@ public void Telegraph(){
         IEnumerator StartTelegraph(){
             float timer = 0f;
             Vector3 initialScale = spriteTransform.localScale;
-            Vector3 targetScale = new Vector3(6.5f, 6.5f, 1.0f);
+            Vector3 targetScale = new Vector3(200f, 200f, 1.0f);
 
             while(timer < fuseTime){
                 spriteTransform.localScale = Vector3.Lerp(initialScale, targetScale, timer / fuseTime);

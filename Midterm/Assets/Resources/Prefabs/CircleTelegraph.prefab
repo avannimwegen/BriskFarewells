@@ -30,8 +30,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -6.95, y: -2.01, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 1
+  m_LocalScale: {x: 0.03, y: 0.03, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 85705646864112540}
   m_Father: {fileID: 0}
@@ -77,8 +77,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 8c20ac56e03e3604ebdd6a942b06ae8f, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 731466ccbc80f5f488c0fa2e2fc822f5, type: 3}
+  m_Color: {r: 1, g: 0, b: 0.03836775, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -103,6 +103,7 @@ MonoBehaviour:
   playerTransform: {fileID: 980540479121455262, guid: 29359d80633341642b1389795d9e6de6, type: 3}
   fuseTime: 0.7
   particleBurst: {fileID: 4979497363353178969, guid: a174f10b8ca124c42baf58681ef29764, type: 3}
+  playerObject: {fileID: 0}
   spriteTransform: {fileID: 85705646864112540}
 --- !u!114 &7078805550778793552
 MonoBehaviour:

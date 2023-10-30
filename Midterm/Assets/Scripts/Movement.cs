@@ -42,9 +42,11 @@ public class Movement : MonoBehaviour
 
         // Get the player character's transform
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+        // Get player position
         playerPosition = new Vector3(playerTransform.position.x, playerTransform.position.y, -10);
     }
 
+    // Old code for moving objects
     public void moveTransform(Vector3 vel){
         transform.position += vel * Time.deltaTime; 
     }
@@ -59,7 +61,7 @@ public class Movement : MonoBehaviour
         }
     }
 
-    // Test and delete -- Probably old code for bullets / enemies
+    // Used when AI is set to idle
     public void moveRB(Vector3 vel){
         rb.velocity = vel * speed;
     }
@@ -90,7 +92,7 @@ public class Movement : MonoBehaviour
         {
             Vector3 dir =  (Vector3)pathLeftToGo[0]-transform.position ;
             transform.position += dir.normalized * Time.deltaTime * speed;
-            if (((Vector2)transform.position - pathLeftToGo[0]).sqrMagnitude <speed*speed*Time.deltaTime) 
+            if (((Vector2)transform.position - pathLeftToGo[0]).sqrMagnitude < speed * Time.deltaTime) 
             {
                 transform.position = pathLeftToGo[0];
                 pathLeftToGo.RemoveAt(0);
