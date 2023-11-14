@@ -12,7 +12,7 @@ public class FallingBox : MonoBehaviour
     [SerializeField] int targetHp = 5;
 
     // Enemys are slowly created at portals
-    float teleportTime = 2f;
+    [SerializeField] float teleportTime = 3f;
     private float TeleportFade = 0f; // Initial value for _TeleportFade
 
 

@@ -12,6 +12,8 @@ TagManager:
   - Enemy
   - Checkpoint
   - NoCollisionProjectile
+  - PostProcessVolume
+  - Door
   layers:
   - Default
   - TransparentFX

@@ -8,7 +8,12 @@ public class playerProjectile : MonoBehaviour
     void Start()
     {
         gameObject.GetComponent<Rigidbody2D>().velocity = transform.up * 10;
-        Destroy(this.gameObject,3);
+        //Destroy(this.gameObject,3);
+    }
+
+    public void Launch(Quaternion rotation){
+        transform.rotation = rotation;
+        gameObject.GetComponent<Rigidbody2D>().velocity = transform.up * 10;
     }
 
     void OnTriggerEnter2D(Collider2D other){
@@ -31,7 +36,7 @@ public class playerProjectile : MonoBehaviour
         } else if (other.gameObject.tag == "NoCollisionProjectile"){
             
         } else {
-            Destroy(this.gameObject);
+            this.gameObject.SetActive(false);
         }
     }
 }

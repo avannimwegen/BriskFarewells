@@ -33,6 +33,14 @@ public class PlayerShip : MonoBehaviour
         } 
     }
 
+    public void Heal(int healing){
+        currentHealth += healing;
+        if(currentHealth > maxHealth){
+            currentHealth = maxHealth;
+        }
+        healthBar.SetHealth(currentHealth);
+    }
+
     public void TakeDamage(int damage){
         currentHealth -= damage;
         healthBar.SetHealth(currentHealth);

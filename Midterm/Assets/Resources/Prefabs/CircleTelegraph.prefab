@@ -101,7 +101,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerTransform: {fileID: 980540479121455262, guid: 29359d80633341642b1389795d9e6de6, type: 3}
-  fuseTime: 0.7
+  fuseTime: 0.5
   particleBurst: {fileID: 4979497363353178969, guid: a174f10b8ca124c42baf58681ef29764, type: 3}
   playerObject: {fileID: 0}
   spriteTransform: {fileID: 85705646864112540}
@@ -117,7 +117,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7c238c702a874040acdd308933d62cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  deleteTimer: 0.8
+  deleteTimer: 0.6
 --- !u!82 &1263334207555411264
 AudioSource:
   m_ObjectHideFlags: 0
