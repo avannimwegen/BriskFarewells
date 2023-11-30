@@ -34,7 +34,9 @@ public class playerProjectile : MonoBehaviour
         } else if (other.gameObject.tag == "Checkpoint"){
 
         } else if (other.gameObject.tag == "NoCollisionProjectile"){
-            
+
+        } else if (other.gameObject.tag == "HealthPack"){
+                
         } else {
             this.gameObject.SetActive(false);
         }

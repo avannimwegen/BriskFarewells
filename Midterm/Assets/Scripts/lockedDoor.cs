@@ -15,6 +15,13 @@ public class lockedDoor : MonoBehaviour
     void Start()
     {
         startPosition = transform.position;
+        KeyManager.AddDoor(this);
+    }
+
+    // Unregister the door when it becomes inactive
+    public void Disable()
+    {
+        KeyManager.RemoveDoor(this);
     }
 
     // Call this method when a portal is destroyed and a key is obtained
@@ -28,6 +35,23 @@ public class lockedDoor : MonoBehaviour
         {
             OpenDoor();
         }
+    }
+
+
+    // Check if the door can open
+    public void CheckDoorStatus()
+    {
+        if (CanOpen())
+        {
+            OpenDoor();
+            Disable();
+        }
+    }
+
+    private bool CanOpen()
+    {
+        // Check if the number of keys collected is greater than or equal to keysNeeded
+        return KeyManager.singleton.GetKeysCollected() >= keysNeeded;
     }
 
     // Call this method to open the door

@@ -15,10 +15,11 @@ public class smallHealthPack : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other){
         if (other.tag == "Player"){
+            //if(playerObject.GetComponent<PlayerShip>().hitpoints == 100){}  TODO: Don't consume if player max hp
             Debug.Log("Player touched Health pack");
             Heal(20);  
-            Destroy(this.gameObject); 
-        }        
+            Destroy(this.gameObject);
+        }   
     }
 
     public void Heal(int amount){

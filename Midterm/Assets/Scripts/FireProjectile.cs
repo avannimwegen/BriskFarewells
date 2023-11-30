@@ -23,7 +23,7 @@ public GameObject projectilePrefab;
         Quaternion bulletAngle = Quaternion.Euler(new Vector3(0, 0, angle));
 
         GameObject newProjectileRB;
-        if(pool.Count > 50){
+        if(pool.Count > 30){
             newProjectileRB = pool[0];
             pool.RemoveAt(0);
             newProjectileRB.transform.position = transform.position;
@@ -47,7 +47,7 @@ public GameObject projectilePrefab;
         GameObject newProjectileRB1;
         GameObject newProjectileRB2;
         GameObject newProjectileRB3;
-        if(pool.Count > 50){
+        if(pool.Count > 30){
             newProjectileRB1 = pool[0];
             pool.RemoveAt(0);
             newProjectileRB2 = pool[0];

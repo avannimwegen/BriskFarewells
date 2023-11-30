@@ -25,6 +25,7 @@ public class FallingBox : MonoBehaviour
     {
         movement = GetComponent<Movement>();
         material = GetComponent<SpriteRenderer>().material;
+        material.SetFloat("_TeleportFade", TeleportFade);
     }
     // Start is called before the first frame update
     void Start()

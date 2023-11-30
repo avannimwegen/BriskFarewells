@@ -7,6 +7,8 @@ public class PlayerShip : MonoBehaviour
 {
     public HealthBar healthBar;
     
+    public PlayerInfoSO playerHPSO;
+
     public int maxHealth = 100;
     public int currentHealth;
 
@@ -39,10 +41,15 @@ public class PlayerShip : MonoBehaviour
             currentHealth = maxHealth;
         }
         healthBar.SetHealth(currentHealth);
+        //healthBar.SetHealth(playerHPSO.player_hp);
     }
 
     public void TakeDamage(int damage){
         currentHealth -= damage;
         healthBar.SetHealth(currentHealth);
+
+        //playerHPSO.player_hp -= damage;
+        Debug.Log(playerHPSO.player_hp);
+        //healthBar.SetHealth(playerHPSO.player_hp);
     }
 }

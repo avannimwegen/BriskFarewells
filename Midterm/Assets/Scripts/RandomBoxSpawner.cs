@@ -5,22 +5,32 @@ using UnityEngine;
 public class RandomBoxSpawner : MonoBehaviour
 {
     Movement movement;
+
+    // What prefabs to spawn and SpawnerInfo like hitpoints
     [SerializeField] GameObject boxPrefab;
-    [SerializeField] int hitPoints = 50;
-    //public Transform spawnTransform;
+    [SerializeField] int hitPoints = 20;
+
+    // Spawning system
+    [SerializeField] float viewRadius = 15;  // don't spawn enemies if player if afk in corner
+    public bool spawning; // If spawner is on, don't repeatedly call coroutines.
+    private Coroutine spawnCoroutine;
+
+    // only get destroyed once
     private bool SFXplayed = false;
-    private int countSpawn;
     public ParticleSystem particleBurst;
+
+    // Get player transform to start spawning based on distance
+    [SerializeField] Transform playerTransform;
 
     void Awake(){
         movement = GetComponent<Movement>();
-        //spawnTransform = GameObject.FindGameObjectWithTag("Spawn").GetComponent<Transform>();
+        playerTransform = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        SpawnBoxesOverTime();
+        
     }
 
     //void SpawnBoxesOverTime2(){
@@ -35,10 +45,8 @@ public class RandomBoxSpawner : MonoBehaviour
 
     //}
 
-    void SpawnBoxesOverTime(){
-        StartCoroutine(SpawnBoxesOverTimeRoutine());
 
-        IEnumerator SpawnBoxesOverTimeRoutine(){
+    IEnumerator SpawnBoxesOverTimeRoutine(){
 
             while(true){
                 yield return new WaitForSeconds(1.8f);
@@ -47,12 +55,25 @@ public class RandomBoxSpawner : MonoBehaviour
             }
 
             yield return null;
-        }
-
     }
+
 
     // Update is called once per frame
     void Update(){
+        if(Vector3.Distance(transform.position, playerTransform.position) < viewRadius){
+            if(!spawning){
+                Debug.Log("Start spawning");
+                spawnCoroutine = StartCoroutine(SpawnBoxesOverTimeRoutine());
+                spawning = true;
+            }
+        } else {
+            if(spawning){
+                Debug.Log("Stop spawning");
+                StopCoroutine(spawnCoroutine);
+                spawning = false;
+            }
+        }
+
         if (hitPoints < 1){
             // Only play sound effect once!
             if(SFXplayed == false){
